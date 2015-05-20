@@ -41,7 +41,7 @@ class tachyon {
     exec { "download tachyon":
         alias    => "download-tachyon",
         cwd      => "${tachyon::params::tachyon_base}",
-        command  => "wget https://github.com/amplab/tachyon/releases/download/v${tachyon::params::version}/tachyon-${tachyon::params::version}-bin.tar.gz",
+        command  => "wget ${tachyon::params::download_link}",
         user     => "${tachyon::params::tachyon_user}",
         path     => ["/bin", "/usr/bin", "/usr/sbin"],
         creates  => "${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}-bin.tar.gz",
