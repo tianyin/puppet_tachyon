@@ -36,7 +36,25 @@ class tachyon {
         ensure   => directory,
         require  => [ User["${tachyon::params::tachyon_user}"], Group["${tachyon::params::tachyon_group}"] ]
     }
-  
+ 
+    #underfs directory
+    file { "${tachyon_underfs_address}":
+        alias    => "tachyon-underfs",
+        owner    => "${tachyon::params::tachyon_user}",
+        group    => "${tachyon::params::tachyon_group}",
+        ensure   => directory,
+        require  => [ User["${tachyon::params::tachyon_user}"], Group["${tachyon::params::tachyon_group}"] ]
+    }
+
+    #ramdisk directory
+    file { "${tachyon_ram_folder}":
+        alias    => "tachyon-ramfs",
+        owner    => "${tachyon::params::tachyon_user}",
+        group    => "${tachyon::params::tachyon_group}",
+        ensure   => directory,
+        require  => [ User["${tachyon::params::tachyon_user}"], Group["${tachyon::params::tachyon_group}"] ]
+    }
+ 
     #download from the official tarball
     exec { "download tachyon":
         alias    => "download-tachyon",
