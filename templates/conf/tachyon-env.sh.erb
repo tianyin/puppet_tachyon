@@ -6,11 +6,13 @@
 #
 # - JAVA_HOME, to point to your JAVA installation
 export JAVA_HOME=<%= scope.lookupvar('tachyon::params::java_home') %>
-export TACHYON_UNDERFS_ADDRESS=<%= scope.lookupvar('tachyon::tachyon_underfs_address') %>
 # - TACHYON_MASTER_ADDRESS, to bind the master to a different IP address or hostname
+export TACHYON_MASTER_ADDRESS=<%= scope.lookupvar('tachyon::params::tachyon_master_address') %>
 # - TACHYON_UNDERFS_ADDRESS, to set the under filesystem address.
+export TACHYON_UNDERFS_ADDRESS=<%= scope.lookupvar('tachyon::params::tachyon_underfs_address') %>
 # - TACHYON_WORKER_MEMORY_SIZE, to set how much memory to use (e.g. 1000mb, 2gb) per worker
 # - TACHYON_RAM_FOLDER, to set where worker stores in memory data
+export TACHYON_RAM_FOLDER=<%= scope.lookupvar('tachyon::params::tachyon_ram_folder') %>
 # - TACHYON_UNDERFS_HDFS_IMPL, to set which HDFS implementation to use (e.g. com.mapr.fs.MapRFileSystem,
 #   org.apache.hadoop.hdfs.DistributedFileSystem)
 
