@@ -33,7 +33,10 @@ class tachyon::params {
     }
 
     $servers = $::hostname ? {
-        default => ["test2.openstacklocal", "test3.openstacklocal", "test4.openstacklocal"]
+        default => ["ccied6.sysnet.ucsd.edu", 
+                    "ccied8.sysnet.ucsd.edu",
+                    "ccied9.sysnet.ucsd.edu"
+                   ]
     }
 
     $workers = join($servers, "\r\n")
