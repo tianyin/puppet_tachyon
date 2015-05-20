@@ -25,7 +25,7 @@ class tachyon::params {
     }
 
     $tachyon_master_address = $::hostname ? {
-        default => 'ccied8.sysnet.ucsd.edu' 
+        default => '169.228.66.38' 
     }
 
     $tachyon_ram_folder = $::hostname ? {
@@ -33,9 +33,9 @@ class tachyon::params {
     }
 
     $servers = $::hostname ? {
-        default => ["ccied6.sysnet.ucsd.edu", 
-                    "ccied8.sysnet.ucsd.edu",
-                    "ccied9.sysnet.ucsd.edu"
+        default => ["169.228.66.36",
+                    "169.228.66.38"
+                    "169.228.66.39"
                    ]
     }
 
