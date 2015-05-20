@@ -1,5 +1,6 @@
 class tachyon {
     require "tachyon::params"
+    require ""
 
     group { "${tachyon::params::tachyon_group}":
         ensure => present,
