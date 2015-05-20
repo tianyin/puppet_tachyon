@@ -25,7 +25,7 @@ class tachyon::params {
     }
 
     $tachyon_master_address = $::hostname ? {
-        default => 'localhost' 
+        default => 'ccied8.sysnet.ucsd.edu' 
     }
 
     $tachyon_ram_folder = $::hostname ? {
