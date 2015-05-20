@@ -5,11 +5,11 @@ class tachyon::params {
     }
 
     $tachyon_user = $::hostname ? {
-        default => 'tianyin',
+        default => 'cse223_tixu',
     }
 
     $tachyon_group = $::hostname ? {
-        default => 'tianyin',
+        default => 'root',
     }
 
     $java_home = $::hostname ? {
