@@ -21,7 +21,8 @@ class tachyon::params {
     }
 
     $tachyon_underfs_address = $::hostname ? {
-        default => '/mnt/tachyon/underfs',
+        #default => '/mnt/tachyon/underfs',
+        default => 'hdfs://169.228.66.38:9000'
     }
 
     $tachyon_master_address = $::hostname ? {
