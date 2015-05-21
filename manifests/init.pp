@@ -60,6 +60,13 @@ class tachyon {
         before   => [ File["tachyon-env"], File["tachyon-workers"]]
     }
 
+    exec { "change owner":
+        alias    => "change-owner",
+        cwd      => "${tachyon::params::tachyon_base}",
+        command  => "chown -R ${tachyon::params::tachyon_user}:${tachyon::params::tachyon_group} ${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}",
+        path     => ["/bin", "/usr/bin", "/usr/sbin"],
+    }
+
     #configuration file
     file { "${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}/conf/tachyon-env.sh":
         alias    => "tachyon-env",
