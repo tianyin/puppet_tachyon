@@ -29,13 +29,13 @@ class tachyon {
     }
 
     #install directory
-    file { "${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}":
-        alias    => "tachyon-install",
-        owner    => "${tachyon::params::tachyon_user}",
-        group    => "${tachyon::params::tachyon_group}",
-        ensure   => directory,
-        require  => [ User["${tachyon::params::tachyon_user}"], Group["${tachyon::params::tachyon_group}"] ]
-    }
+    #file { "${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}":
+    #    alias    => "tachyon-install",
+    #    owner    => "${tachyon::params::tachyon_user}",
+    #    group    => "${tachyon::params::tachyon_group}",
+    #    ensure   => directory,
+    #    require  => [ User["${tachyon::params::tachyon_user}"], Group["${tachyon::params::tachyon_group}"] ]
+    #}
  
     #download from the official tarball
     exec { "download tachyon":
