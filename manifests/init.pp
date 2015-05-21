@@ -71,7 +71,7 @@ class tachyon {
     #the worker file
     file { "${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}/conf/workers" :
         alias    => "tachyon-workers",
-        content  => "$tachyon::params::workers",
+        content  => "${tachyon::params::workers}",
         owner    => "${tachyon::params::tachyon_user}",
         group    => "${tachyon::params::tachyon_group}",
     }
