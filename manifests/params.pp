@@ -1,7 +1,7 @@
 class tachyon::params {    
 
     $version = $::hostname ? { 
-        default => '0.6.4',
+        default => '0.5.0',
     }
 
     $tachyon_user = $::hostname ? {
@@ -36,7 +36,10 @@ class tachyon::params {
     $servers = $::hostname ? {
         default => ["169.228.66.36",
                     "169.228.66.38",
-                    "169.228.66.39"
+                    "169.228.66.39",
+                    "169.228.66.40",
+                    "169.228.66.41",
+                    "169.228.66.42"
                    ]
     }
 

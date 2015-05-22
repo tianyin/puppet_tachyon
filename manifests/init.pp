@@ -57,7 +57,7 @@ class tachyon {
         user     => "${tachyon::params::tachyon_user}",
         path     => ["/bin", "/usr/bin", "/usr/sbin"],
         creates  => "${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}",
-        before   => [ File["tachyon-env"], File["tachyon-workers"]]
+        before   => [ File["tachyon-env"], File["tachyon-workers"], Exec["change-owner"]]
     }
 
     exec { "change owner":
