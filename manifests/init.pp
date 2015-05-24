@@ -1,14 +1,24 @@
-class tachyon {
-    require "tachyon::params"
+class tachyon (
+    $version         = $tachyon::params::version,
+    $java_home       = $tachyon::params::java_home,
+    $user            = $tachyon::params::tachyon_user,
+    $group           = $tachyon::params::tachyon_group,
+    $basedir         = $tachyon::params::tachyon_base,
+    $download_link   = $tachyon::params::download_link,
+    $workers         = $tachyon::params::workers,
+    $underfs_address = $tachyon::params::tachyon_underfs_address,
+    $master_address  = $tachyon::params::tachyon_master_address,
+    $ram_folder      = $tachyon::params::tachyon_ram_folder 
+    ) inherits tachyon::params {
 
-    group { "${tachyon::params::tachyon_group}":
+    group { "$group":
         ensure => present,
     }
 
-    user { "${tachyon::params::tachyon_user}":
+    user { "$user":
         ensure  => present,
         shell   => "/bin/bash",
-        require => Group["${tachyon::params::tachyon_group}"],
+        require => Group["$group"],
     }
 
     package { "openjdk-7-jdk":
@@ -20,31 +30,31 @@ class tachyon {
     }
  
     #base directory
-    file { "${tachyon::params::tachyon_base}":
+    file { "$basedir":
         alias    => "tachyon-base",
-        owner    => "${tachyon::params::tachyon_user}",
-        group    => "${tachyon::params::tachyon_group}",
+        owner    => "$user",
+        group    => "$group",
         ensure   => directory,
-        require  => [ User["${tachyon::params::tachyon_user}"], Group["${tachyon::params::tachyon_group}"] ]
+        require  => [ User["$user"], Group["$group"] ]
     }
 
     #install directory
-    file { "${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}":
-        alias    => "tachyon-install",
-        owner    => "${tachyon::params::tachyon_user}",
-        group    => "${tachyon::params::tachyon_group}",
-        ensure   => directory,
-        require  => [ User["${tachyon::params::tachyon_user}"], Group["${tachyon::params::tachyon_group}"] ]
-    }
+    #file { "$basedir/tachyon-$version":
+    #    alias    => "tachyon-install",
+    #    owner    => "$user",
+    #    group    => "$group",
+    #    ensure   => directory,
+    #    require  => [ User["$user"], Group["$group"] ]
+    #}
  
     #download from the official tarball
     exec { "download tachyon":
         alias    => "download-tachyon",
-        cwd      => "${tachyon::params::tachyon_base}",
-        command  => "wget https://github.com/amplab/tachyon/releases/download/v${tachyon::params::version}/tachyon-${tachyon::params::version}-bin.tar.gz",
-        user     => "${tachyon::params::tachyon_user}",
+        cwd      => "$basedir",
+        command  => "wget $download_link",
+        user     => "$user",
         path     => ["/bin", "/usr/bin", "/usr/sbin"],
-        creates  => "${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}-bin.tar.gz",
+        creates  => "$basedir/tachyon-$version-bin.tar.gz",
         before   => Exec["untar-tachyon"],
         require  => File["tachyon-base"],
     }
@@ -52,27 +62,34 @@ class tachyon {
     #untar the tarball
     exec { "untar tachyon":
         alias    => "untar-tachyon",
-        cwd      => "${tachyon::params::tachyon_base}",
-        command  => "tar xvfz ${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}-bin.tar.gz",
-        user     => "${tachyon::params::tachyon_user}",
+        cwd      => "$basedir",
+        command  => "tar xvfz $basedir/tachyon-$version-bin.tar.gz",
+        user     => "$user",
         path     => ["/bin", "/usr/bin", "/usr/sbin"],
-        creates  => "${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}",
-        before   => [ File["tachyon-env"], File["tachyon-workers"]]
+        creates  => "$basedir/tachyon-$version",
+        before   => [ File["tachyon-env"], File["tachyon-workers"], Exec["change-owner"]]
+    }
+
+    exec { "change owner":
+        alias    => "change-owner",
+        cwd      => "$basedir",
+        command  => "chown -R $user:$group $basedir/tachyon-$version",
+        path     => ["/bin", "/usr/bin", "/usr/sbin"],
     }
 
     #configuration file
-    file { "${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}/conf/tachyon-env.sh":
+    file { "$basedir/tachyon-$version/conf/tachyon-env.sh":
         alias    => "tachyon-env",
         content  => template("tachyon/templates/conf/tachyon-env.sh.erb"),
-        owner    => "${tachyon::params::tachyon_user}",
-        group    => "${tachyon::params::tachyon_group}",
+        owner    => "$user",
+        group    => "$group",
     }
 
     #the worker file
-    file { "${tachyon::params::tachyon_base}/tachyon-${tachyon::params::version}/conf/workers" :
+    file { "$basedir/tachyon-$version/conf/workers" :
         alias    => "tachyon-workers",
-        content  => "$tachyon::params::workers",
-        owner    => "${tachyon::params::tachyon_user}",
-        group    => "${tachyon::params::tachyon_group}",
+        content  => "$workers",
+        owner    => "$user",
+        group    => "$group",
     }
 }
