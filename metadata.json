@@ -1,20 +1,28 @@
 {
   "name": "tianyin-tachyon",
   "version": "0.0.1",
-  "author": "Tianyin Xu",
-  "license": "Apache-2.0",
-  "summary": "A module for Tachyon memory-centric distributed storage system (http://tachyon-project.org/)",
   "source": "https://github.com/tianyin/puppet_tachyon",
-  "project_page": "https://forge.puppetlabs.com/examplecorp/mymodule",
-  "issues_url": "https://github.com/examplecorp/examplecorp-mymodule/issues",
-  "tags": ["tachyon", "tianyin"],
-  "operatingsystem_support": [
-    {
-    "operatingsystem": "Ubuntu",
-    "operatingsystemrelease": [ "12.04", "14.04" ]
-    }
-   ],
+  "author": "tianyin",
+  "license": "Apache License, Version 2.0",
+  "summary": "Puppet module for Tachyon (http://tachyon-project.org/)",
+  "description": "Puppet module for Tachyon memory-centric distributed storage system",
+  "project_page": "UNKNOWN",
   "dependencies": [
-    { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0" },
-  ]
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 3.2.0"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "LICENSE": "fa818a259cbed7ce8bc2a22d35a464fc",
+    "Modulefile": "8d24d37ed0c09b782f2cb0b2241bd718",
+    "manifests/cluster.pp": "c841f540e570985791db262b04778649",
+    "manifests/init.pp": "c469d423f079383d77297b8ec7b73666",
+    "manifests/params.pp": "1c591283dad4024787bc216f2762a7d9",
+    "templates/conf/tachyon-env.sh.erb": "c6d44b5852e7e7670a5b3a937757e2a4",
+    "tests/init.pp": "c418052755d1e1a0198e6b3c967606cb"
+  }
 }

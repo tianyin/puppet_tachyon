@@ -1,5 +1,5 @@
 name    'tianyin-tachyon'
-version '0.1.0'
+version '0.0.1'
 source 'https://github.com/tianyin/puppet_tachyon'
 author 'tianyin'
 license 'Apache License, Version 2.0'
