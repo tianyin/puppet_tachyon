@@ -1,7 +1,7 @@
 class tachyon::params {    
 
     $version = $::hostname ? { 
-        default => '0.5.0',
+        default => '0.6.4',
     }
 
     $tachyon_user = $::hostname ? {
