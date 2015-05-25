@@ -10,6 +10,8 @@ class tachyon (
     $master_address  = $tachyon::params::tachyon_master_address,
     $ram_folder      = $tachyon::params::tachyon_ram_folder 
     ) inherits tachyon::params {
+
+    $sworkers = join($workers, "\r\n") 
     
     group { "$group":
         ensure => present,
@@ -84,7 +86,7 @@ class tachyon (
     #the worker file
     file { "$basedir/tachyon-$version/conf/workers" :
         alias    => 'tachyon-workers',
-        content  => "$workers",
+        content  => "$sworkers",
         owner    => "$user",
         group    => "$group",
     }
