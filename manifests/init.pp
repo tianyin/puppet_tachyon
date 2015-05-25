@@ -9,7 +9,9 @@ class tachyon (
     $underfs_address = $tachyon::params::tachyon_underfs_address,
     $master_address  = $tachyon::params::tachyon_master_address,
     $ram_folder      = $tachyon::params::tachyon_ram_folder 
-    ) inherits tachyon::params {
+    ) {
+    
+    require tachyon::params
 
     group { "$group":
         ensure => present,
@@ -21,9 +23,9 @@ class tachyon (
         require => Group["$group"],
     }
 
-    package { "openjdk-7-jdk":
-        ensure => installed,
-    }
+    #package { "openjdk-7-jdk":
+    #    ensure => installed,
+    #}
 
     package { "wget":
         ensure => installed,
