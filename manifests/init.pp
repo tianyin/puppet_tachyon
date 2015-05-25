@@ -17,21 +17,17 @@ class tachyon (
 
     user { "$user":
         ensure  => present,
-        shell   => "/bin/bash",
+        shell   => '/bin/bash',
         require => Group["$group"],
     }
 
-    #package { "openjdk-7-jdk":
-    #    ensure => installed,
-    #}
-
-    package { "wget":
+    package { 'wget':
         ensure => installed,
     }
  
     #base directory
     file { "$basedir":
-        alias    => "tachyon-base",
+        alias    => 'tachyon-base',
         owner    => "$user",
         group    => "$group",
         ensure   => directory,
@@ -40,7 +36,7 @@ class tachyon (
 
     #install directory
     #file { "$basedir/tachyon-$version":
-    #    alias    => "tachyon-install",
+    #    alias    => 'tachyon-install',
     #    owner    => "$user",
     #    group    => "$group",
     #    ensure   => directory,
@@ -48,46 +44,46 @@ class tachyon (
     #}
  
     #download from the official tarball
-    exec { "download tachyon":
-        alias    => "download-tachyon",
+    exec { 'download tachyon':
+        alias    => 'download-tachyon',
         cwd      => "$basedir",
         command  => "wget $download_link",
         user     => "$user",
-        path     => ["/bin", "/usr/bin", "/usr/sbin"],
+        path     => ['/bin', '/usr/bin', '/usr/sbin'],
         creates  => "$basedir/tachyon-$version-bin.tar.gz",
-        before   => Exec["untar-tachyon"],
-        require  => File["tachyon-base"],
+        before   => Exec['untar-tachyon'],
+        require  => File['tachyon-base'],
     }
 
     #untar the tarball
-    exec { "untar tachyon":
-        alias    => "untar-tachyon",
+    exec { 'untar tachyon':
+        alias    => 'untar-tachyon',
         cwd      => "$basedir",
         command  => "tar xvfz $basedir/tachyon-$version-bin.tar.gz",
         user     => "$user",
-        path     => ["/bin", "/usr/bin", "/usr/sbin"],
+        path     => ['/bin', '/usr/bin', '/usr/sbin'],
         creates  => "$basedir/tachyon-$version",
-        before   => [ File["tachyon-env"], File["tachyon-workers"], Exec["change-owner"]]
+        before   => [ File['tachyon-env'], File['tachyon-workers'], Exec['change-owner']]
     }
 
-    exec { "change owner":
-        alias    => "change-owner",
+    exec { 'change owner':
+        alias    => 'change-owner',
         cwd      => "$basedir",
         command  => "chown -R $user:$group $basedir/tachyon-$version",
-        path     => ["/bin", "/usr/bin", "/usr/sbin"],
+        path     => ['/bin', '/usr/bin', '/usr/sbin'],
     }
 
     #configuration file
     file { "$basedir/tachyon-$version/conf/tachyon-env.sh":
-        alias    => "tachyon-env",
-        content  => template("tachyon/templates/conf/tachyon-env.sh.erb"),
+        alias    => 'tachyon-env',
+        content  => template('tachyon/templates/conf/tachyon-env.sh.erb'),
         owner    => "$user",
         group    => "$group",
     }
 
     #the worker file
     file { "$basedir/tachyon-$version/conf/workers" :
-        alias    => "tachyon-workers",
+        alias    => 'tachyon-workers',
         content  => "$workers",
         owner    => "$user",
         group    => "$group",
