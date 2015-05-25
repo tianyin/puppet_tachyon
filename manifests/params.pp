@@ -5,7 +5,7 @@ class tachyon::params {
     }
 
     $tachyon_user = $::hostname ? {
-        default => 'cse223_tixu',
+        default => 'tachyon',
     }
 
     $tachyon_group = $::hostname ? {
@@ -21,8 +21,8 @@ class tachyon::params {
     }
 
     $tachyon_underfs_address = $::hostname ? {
-        #default => '/mnt/tachyon/underfs',
-        default => 'hdfs://169.228.66.38:9000'
+        #default => 'hdfs://169.228.66.38:9000'
+        default => '/mnt/tachyon/underfs',
     }
 
     $tachyon_master_address = $::hostname ? {
