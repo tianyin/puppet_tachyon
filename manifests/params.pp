@@ -21,12 +21,12 @@ class tachyon::params {
     }
 
     $tachyon_underfs_address = $::hostname ? {
-        #default => 'hdfs://169.228.66.38:9000'
+        #default => 'hdfs://localhost:9000'
         default => '/mnt/tachyon/underfs',
     }
 
     $tachyon_master_address = $::hostname ? {
-        default => '169.228.66.38' 
+        default => 'localhost' 
     }
 
     $tachyon_ram_folder = $::hostname ? {
@@ -34,11 +34,7 @@ class tachyon::params {
     }
 
     $servers = $::hostname ? {
-        default => ["169.228.66.36",
-                    "169.228.66.38",
-                    "169.228.66.39",
-                    "169.228.66.42"
-                   ]
+        default => ['localhost']
     }
 
     $workers = join($servers, "\r\n")
