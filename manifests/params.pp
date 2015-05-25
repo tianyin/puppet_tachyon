@@ -1,6 +1,5 @@
-class tachyon::params {    
-
-    $version = $::hostname ? { 
+class tachyon::params {
+    $version = $::hostname ? {
         default => '0.6.4',
     }
 
@@ -26,7 +25,7 @@ class tachyon::params {
     }
 
     $tachyon_master_address = $::hostname ? {
-        default => 'localhost' 
+        default => 'localhost'
     }
 
     $tachyon_ram_folder = $::hostname ? {

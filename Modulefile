@@ -1,11 +1,11 @@
 name    'tianyin-tachyon'
-version '0.0.1'
+version '0.0.2'
 source 'https://github.com/tianyin/puppet_tachyon'
 author 'tianyin'
-license 'Apache License, Version 2.0'
+license 'Apache-2.0'
 summary 'Puppet module for Tachyon (http://tachyon-project.org/)'
-description 'Puppet module for Tachyon memory-centric distributed storage system'
-project_page 'UNKNOWN'
-
-## Add dependencies, if any:
-dependency 'puppetlabs/stdlib', '>= 3.2.0'
+description 'Puppet module for deploying Tachyon (please refer to the GitHub project page for details)'
+project_page 'https://github.com/tianyin/puppet_tachyon'
+#issues_url 'https://github.com/tianyin/puppet_tachyon/issues'
+dependency 'puppetlabs/stdlib', '>=4.6.0 <5.0.0'
+#operatingsystem 'Ubuntu', '14.04'
