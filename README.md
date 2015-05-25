@@ -7,7 +7,9 @@ Note that this module only deploys the software and help automatically update th
 ##Use the module
 
 ###Local deployment 
-(http://tachyon-project.org/Running-Tachyon-Locally.html)
+
+http://tachyon-project.org/Running-Tachyon-Locally.html
+
 The default configuration is to run Tachyon locally. You can declare a tachyon class as follows,
 ```
 include tachyon
@@ -21,7 +23,9 @@ class { 'tachyon':
 ```
 
 ###Cluster deployment 
-(http://tachyon-project.org/Running-Tachyon-on-a-Cluster.html)
+
+http://tachyon-project.org/Running-Tachyon-on-a-Cluster.html
+
 To run Tachyon on a cluster, you need to tell the tachyon class the master's address and the workers' addresses as follows (in local mode, they are set to ```localhost```),
 ```
 class { 'tachyon':
