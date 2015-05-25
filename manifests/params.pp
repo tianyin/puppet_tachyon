@@ -33,11 +33,11 @@ class tachyon::params {
         default => '/mnt/tachyon/ramdisk'
     }
 
-    $servers = $::hostname ? {
+    $workers = $::hostname ? {
         default => ['localhost']
     }
 
-    $workers = join($servers, "\r\n")
+    #$workers = join($servers, "\r\n")
 
     $download_link = $::hostname ? {
         default => "https://github.com/amplab/tachyon/releases/download/v${tachyon::params::version}/tachyon-${tachyon::params::version}-bin.tar.gz"
