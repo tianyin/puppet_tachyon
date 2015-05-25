@@ -9,10 +9,8 @@ class tachyon (
     $underfs_address = $tachyon::params::tachyon_underfs_address,
     $master_address  = $tachyon::params::tachyon_master_address,
     $ram_folder      = $tachyon::params::tachyon_ram_folder 
-    ) {
+    ) inherits tachyon::params {
     
-    require tachyon::params
-
     group { "$group":
         ensure => present,
     }
