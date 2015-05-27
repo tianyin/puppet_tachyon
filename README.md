@@ -6,6 +6,16 @@ Note that this module only deploys the software and help automatically update th
 
 ##Use the module
 
+###Download and installation
+
+You are highly recommended to download and install the module via the standard puppet module installation process, via the following commands
+
+```puppet module install tianyin-tachyon```
+
+The official module page on Puppet Forge is at:
+https://forge.puppetlabs.com/tianyin/tachyon
+
+
 ###Local deployment 
 
 http://tachyon-project.org/Running-Tachyon-Locally.html
