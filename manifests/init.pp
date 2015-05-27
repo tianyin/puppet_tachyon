@@ -11,7 +11,7 @@ class tachyon (
     $ram_folder      = $tachyon::params::tachyon_ram_folder
     ) inherits tachyon::params {
 
-    $sworkers = join($workers, '\r\n')
+    $sworkers = join($workers, "\r\n")
 
     group { $group:
         ensure => present,
