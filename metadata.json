@@ -1,6 +1,6 @@
 {
   "name": "tianyin-tachyon",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "source": "https://github.com/tianyin/puppet_tachyon",
   "author": "tianyin",
   "license": "Apache-2.0",
@@ -20,10 +20,7 @@
       "operatingsystemrelease": [ "12.04", "14.04" ]
     }
   ],
-
-  "types": [
-
-  ],
+  "tags": ["tachyon", "in-memory", "storage", "tianyin"],
   "checksums": {
     "LICENSE": "fa818a259cbed7ce8bc2a22d35a464fc",
     "Modulefile": "9cb6dc62ce6f205628ac06a5151575d7",
